@@ -76,3 +76,15 @@ body.login {
 .login .password-reset-link {
     text-align: center;
 }
+
+.text-center{
+    text-align: center;
+}
+
+#header{
+    background-color: transparent;
+}
+
+#branding{
+    float: none;
+}

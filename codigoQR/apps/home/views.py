@@ -1,7 +1,9 @@
 # -*- encoding: utf-8 -*-
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, FormView
+from easy_pdf.views import PDFTemplateView
 from django.shortcuts import render
 from .models import *
+from .forms import*
 
 class TakeInOutQR(TemplateView):
 	template_name = 'take_code_qr.html'
@@ -28,4 +30,21 @@ class TakeInOutQR(TemplateView):
 			msg = 'Estudiante no encontrado'
 		context['message'] = msg
 		context['type'] = type_msg
+		return context
+
+class MakeReporte(FormView):
+	form_class = ReporteForm
+	template_name = 'form_reporte.html'
+
+class FacturaPDFView(PDFTemplateView):
+	template_name = "pdf.html"
+
+	def get_context_data(self, **kwargs):
+		context = super(FacturaPDFView, self).get_context_data(**kwargs)
+		query = Registros.objects.filter(fecha_ingreso_salida__range = (self.request.GET.get('fecha_inicio'), self.request.GET.get('fecha_final')))
+		if self.request.GET.get('estudiante') != '':
+			query = query.filter(estudiante__id = self.request.GET.get('estudiante'))
+		context['fecha_inicio'] = self.request.GET.get('fecha_inicio')
+		context['fecha_final'] = self.request.GET.get('fecha_final')
+		context['query'] = query
 		return context

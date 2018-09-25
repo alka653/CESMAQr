@@ -36,8 +36,10 @@ INSTALLED_APPS = [
 	'django.contrib.contenttypes',
 	'django.contrib.sessions',
 	'django.contrib.messages',
+	'django.contrib.humanize',
 	'django.contrib.staticfiles',
-	'codigoQR.apps.home'
+	'easy_pdf',
+	'codigoQR.apps.home',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -56,7 +58,7 @@ ROOT_URLCONF = 'codigoQR.urls'
 TEMPLATES = [
 	{
 		'BACKEND': 'django.template.backends.django.DjangoTemplates',
-		'DIRS': [],
+		'DIRS': ['codigoQR/apps/home/templates'],
 		'APP_DIRS': True,
 		'OPTIONS': {
 			'context_processors': [

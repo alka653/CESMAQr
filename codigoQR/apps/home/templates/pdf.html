@@ -1,0 +1,42 @@
+{% extends "easy_pdf/base.html" %}
+
+{% block extra_style %}
+	<style type="text/css">
+		body {
+			font-family: "Helvetica", "sans-serif";
+			color: #2d3436;
+			font-size: 12px;
+		}
+		.content{
+			text-align: center;
+		}
+		table{
+			text-align: center;
+			width: 100%;
+		}
+	</style>
+{% endblock %}
+
+{% block content %}
+	<div class="content">
+		<h1>Reporte de ingreso desde {{ fecha_inicio }} hasta {{ fecha_final }}</h1>
+	</div>
+	<table class="table text-center">
+		<thead>
+			<tr>
+				<th>Alumno</th>
+				<th>Movimiento</th>
+				<th>Fecha</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for registro in query %}
+				<tr style="border-top: 1px solid grey; border-bottom: 1px solid grey; padding: 5px 0px;">
+					<td>{{ registro.estudiante.nombre }}</td>
+					<td>{% if registro.mode == 'I' %}Ingreso{% else %}Salida{% endif %}</td>
+					<td>{{ registro.fecha_ingreso_salida }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}

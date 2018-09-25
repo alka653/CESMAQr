@@ -1,0 +1,31 @@
+{% extends 'admin/base_site.html' %}
+
+{% load static %}
+
+{% block extrahead %}
+	<link rel="stylesheet" type="text/css" href="{% static 'admin/css/forms.css' %}">
+{% endblock %}
+
+{% block content %}
+	<form role="form" action="{% url 'reporte_pdf_codigo_qr' %}" method="GET" enctype="multipart/form-data">
+		{% csrf_token %}
+		<div class="modal-body">
+			<fieldset class="module aligned">
+				{% for forms in form %}
+					<div class="form-row">
+						<div>
+							<label>{{ forms.label }}</label>
+							{{ forms }}
+						</div>
+					</div>
+				{% endfor %}
+			</fieldset>
+		</div>
+		<div class="submit-row">
+			<p class="deletelink-box">
+				<a href="/" class="deletelink">Volver</a>
+			</p>
+			<input type="submit" value="Guardar" />
+		</div>
+	</form>
+{% endblock %}
