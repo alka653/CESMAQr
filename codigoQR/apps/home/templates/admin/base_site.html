@@ -10,4 +10,7 @@
 
 {% block nav-global %}
 	<img class="brand_img" src="{% static 'img/EspirituSanto.png'%}" width="50" height="50" alt="logo">
+     <div id="user-tools">
+          <a href="{% url 'reporte_codigo_qr' %}" id="user-tools" style="border-bottom: none;">Reportes</a>
+     </div>
 {% endblock %}
