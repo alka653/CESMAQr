@@ -113,7 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 DATE_FORMAT = 'Y-m-d H:M'
 
-LOGIN_URL = '/admin/login/'
+LOGIN_URL = '/login/'
 
 LANGUAGE_CODE = 'es'
 
