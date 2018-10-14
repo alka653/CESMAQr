@@ -9,8 +9,21 @@
 {% endblock %}
 
 {% block nav-global %}
-	<img class="brand_img" src="{% static 'img/EspirituSanto.png'%}" width="50" height="50" alt="logo">
-     <div id="user-tools">
-          <a href="{% url 'reporte_codigo_qr' %}" id="user-tools" style="border-bottom: none;">Reportes</a>
-     </div>
+	<script src="{% static 'js/jquery.min.js' %}" type="text/javascript"></script>
+	<script src="{% static 'js/qrcode.min.js' %}" type="text/javascript"></script>
+	<script type="text/javascript">
+		function handleCodigoQR(code){
+			let button = document.getElementById(`btn-${code}`)
+			button.style.display = 'none'
+			new QRCode(document.getElementById(`id-${code}`), {
+				text: `${window.location.origin}/${code}`,
+				width: 150,
+				height: 150,
+			});
+		}
+	</script>
+	<img class="brand_img" src="{% static 'img/EspirituSanto.png' %}" width="50" height="50" alt="logo">
+	<div id="user-tools">
+		<a href="{% url 'reporte_codigo_qr' %}" id="user-tools" style="border-bottom: none;">Reportes</a>
+	</div>
 {% endblock %}
