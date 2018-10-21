@@ -42,6 +42,8 @@ class FacturaPDFView(PDFTemplateView):
 	def get_context_data(self, **kwargs):
 		context = super(FacturaPDFView, self).get_context_data(**kwargs)
 		query = Registros.objects.filter(fecha_ingreso_salida__range = (self.request.GET.get('fecha_inicio'), self.request.GET.get('fecha_final')))
+		if(self.request.GET.get('entrada_salida') != 'all'):
+			query = query.filter(mode = self.request.GET.get('entrada_salida'))
 		if self.request.GET.get('estudiante') != '':
 			query = query.filter(estudiante__id = self.request.GET.get('estudiante'))
 		context['fecha_inicio'] = self.request.GET.get('fecha_inicio')
