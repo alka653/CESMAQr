@@ -11,7 +11,7 @@ class Grados(models.Model):
 
 class Estudiantes(models.Model):
 	nombre=models.CharField(max_length=50)
-	identificacion=models.CharField(max_length=15)
+	identificacion=models.CharField(max_length=15, unique=True)
 	grado=models.ForeignKey(Grados)
 
 	def __str__(self):
